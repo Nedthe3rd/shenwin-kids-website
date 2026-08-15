@@ -1,0 +1,304 @@
+/* ==============================
+   FULL GALLERY PAGE
+============================== */
+
+.gallery-page-hero {
+    min-height: 380px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #fff7e6
+        );
+}
+
+.gallery-page-hero-content {
+    max-width: 800px;
+}
+
+.gallery-page-hero h1 {
+    margin-bottom: 20px;
+
+    color: #1e3a8a;
+
+    font-size: 52px;
+    line-height: 1.1;
+}
+
+.gallery-page-hero p {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: #555555;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* Full Gallery */
+
+.full-gallery {
+    padding: 90px 6%;
+
+    background-color: #ffffff;
+}
+
+.full-gallery-grid {
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 22px;
+}
+
+.full-gallery-item {
+    height: 260px;
+
+    overflow: hidden;
+
+    background-color: #eff6ff;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s ease;
+}
+
+.full-gallery-item:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.13);
+}
+
+.full-gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: 0.5s ease;
+}
+
+.full-gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+
+/* Social Media */
+
+.gallery-social {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #fff7e6
+        );
+}
+
+.gallery-social-content {
+    max-width: 750px;
+
+    margin: 0 auto;
+}
+
+.gallery-social h2 {
+    margin-bottom: 15px;
+
+    color: #1e3a8a;
+
+    font-size: 38px;
+}
+
+.gallery-social p {
+    margin-bottom: 30px;
+
+    color: #666666;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+.gallery-social-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.gallery-social-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 14px 24px;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.gallery-social-button i {
+    font-size: 19px;
+}
+
+.gallery-social-button:hover {
+    transform: translateY(-3px);
+
+    opacity: 0.9;
+}
+
+.tiktok-more {
+    background-color: #000000;
+}
+
+.facebook-more {
+    background-color: #1877f2;
+}
+
+
+/* Back Home */
+
+.gallery-back {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background-color: #ffffff;
+}
+
+.gallery-back-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 25px;
+
+    background-color: #1e3a8a;
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.gallery-back-button:hover {
+    background-color: #f59e0b;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==============================
+   GALLERY PAGE MOBILE
+============================== */
+
+@media (max-width: 1024px) {
+
+    .full-gallery-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .gallery-page-hero {
+        min-height: 320px;
+
+        padding: 60px 20px;
+    }
+
+    .gallery-page-hero h1 {
+        font-size: 38px;
+    }
+
+    .gallery-page-hero p {
+        font-size: 16px;
+    }
+
+    .full-gallery {
+        padding: 60px 20px;
+    }
+
+    .full-gallery-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+    .full-gallery-item {
+        height: 220px;
+    }
+
+    .gallery-social h2 {
+        font-size: 30px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .full-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-gallery-item {
+        height: 260px;
+    }
+
+    .gallery-social-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+}
