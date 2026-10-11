@@ -481,12 +481,14 @@ if (contactForm && formSuccess) {
         } catch (error) {
             sent = false;
             reason = "no connection to the form service";
+            formspreeRefused = true; // try the classic page submit instead
             console.warn("Could not reach Formspree:", error);
         }
 
-        // If Formspree answered but refused (for example its spam check needs
-        // a normal page submit), send the form the classic way instead so the
-        // enquiry still arrives. The CV field is switched off first.
+        // If the background send failed or Formspree refused it (for example
+        // its spam check needs a normal page submit, or the phone's data saver
+        // blocked it), send the form the classic way so the enquiry still
+        // arrives. The CV field is switched off first.
         if (formspreeRefused) {
             const cvField = document.getElementById("cv");
             if (cvField) cvField.disabled = true;
