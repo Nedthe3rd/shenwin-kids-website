@@ -11,7 +11,7 @@
     <meta name="description" content="Shenwin & Kids ECD Centre in Banket, Zimbabwe: a safe, caring place where young children learn through play. Enrolling ECD A, ECD B and Grade 1.">
     <link rel="icon" type="image/png" href="img/favicon.png">
 
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=8">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -20,6 +20,24 @@
 
 <body>
 
+
+<!-- ==============================
+     TOP BAR: GRADUATION COUNTDOWN + TIME
+============================== -->
+
+<div class="top-bar">
+
+    <div class="grad-countdown-wrap" id="grad-countdown-wrap">
+        <span class="grad-label">🎓 Graduation · 28 Nov 2026</span>
+        <span class="grad-countdown" id="grad-countdown" aria-live="off"></span>
+    </div>
+
+    <div class="current-time">
+        <i class="fa-regular fa-clock"></i>
+        <span id="current-time"></span>
+    </div>
+
+</div>
 
 <!-- ==============================
      HEADER
@@ -1567,6 +1585,8 @@
 
 
 <script src="script.js?v=7"></script>
+
+<script src="countdown.js?v=1"></script>
 
 </body>
 

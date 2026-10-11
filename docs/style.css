@@ -4621,3 +4621,73 @@ section:not(.hero)::after {
     color: #25d366;
     font-size: 26px;
 }
+
+
+/* =========================================================
+   TOP BAR: GRADUATION COUNTDOWN + CURRENT TIME
+   ========================================================= */
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+
+    padding: 15px 60px 6px;
+
+    background-color: #1e3a8a;
+    color: #ffffff;
+
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.grad-countdown-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+.grad-label {
+    font-weight: 700;
+    color: #fbbf24;
+}
+
+.grad-countdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.cd-unit b {
+    font-size: 16px;
+}
+
+.current-time {
+    color: #dbeafe;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .top-bar {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        justify-content: center;
+        text-align: center;
+        padding: 14px 16px 6px;
+        font-size: 13px;
+    }
+
+    .grad-countdown-wrap {
+        justify-content: center;
+    }
+}

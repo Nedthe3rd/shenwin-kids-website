@@ -14,7 +14,7 @@
 
     <meta name="description" content="Photos and videos from Shenwin & Kids ECD Centre: Africa Day, fun days, school trips and more.">
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=8">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -23,6 +23,24 @@
 
 <body>
 
+
+<!-- ==============================
+     TOP BAR: GRADUATION COUNTDOWN + TIME
+============================== -->
+
+<div class="top-bar">
+
+    <div class="grad-countdown-wrap" id="grad-countdown-wrap">
+        <span class="grad-label">🎓 Graduation · 28 Nov 2026</span>
+        <span class="grad-countdown" id="grad-countdown" aria-live="off"></span>
+    </div>
+
+    <div class="current-time">
+        <i class="fa-regular fa-clock"></i>
+        <span id="current-time"></span>
+    </div>
+
+</div>
 
     <!-- =====================================================
          HEADER
@@ -1017,6 +1035,8 @@
 
     </script>
 
+
+<script src="countdown.js?v=1"></script>
 
 </body>
 
