@@ -11,7 +11,10 @@
     <meta name="description" content="Shenwin & Kids ECD Centre in Banket, Zimbabwe: a safe, caring place where young children learn through play. Enrolling ECD A, ECD B and Grade 1.">
     <link rel="icon" type="image/png" href="img/favicon.png">
 
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css?v=12">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -25,36 +28,39 @@
      HEADER
 ============================== -->
 
-<header>
+<header class="site-header">
 
-    <div class="logo">
-
-        <a href="#home">
-
-            <img src="img/logo.png" alt="Shenwin & Kids">
-
-        </a>
-
-    </div>
-
+    <a class="brand" href="#home" aria-label="Shenwin &amp; Kids home">
+        <img src="img/logo-mark.png" alt="Shenwin &amp; Kids logo">
+        <span class="brand-text">
+            <strong>Shenwin &amp; Kids</strong>
+            <small>Early Childhood Development Centre</small>
+        </span>
+    </a>
 
     <button
         class="menu-toggle"
         id="menu-toggle"
+        type="button"
         aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="main-nav"
     >
-        ☰
+        <span></span><span></span><span></span>
     </button>
 
-<nav id="main-nav">
-    <a href="#home">Home</a>
-    <a href="#about">About Us</a>
-    <a href="#programs">Programs</a>
-    <a href="#activities">Activities</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#careers">Careers</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <nav id="main-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#programs">Programs</a>
+        <a href="#activities">Activities</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#enquiry-form">
+            <i class="fa-solid fa-graduation-cap"></i> Enrol Now
+        </a>
+    </nav>
 
 </header>
 
@@ -1636,6 +1642,8 @@
 
 <script src="countdown.js?v=2"></script>
 <script src="music.js?v=2"></script>
+
+<script src="nav.js?v=1"></script>
 
 </body>
 

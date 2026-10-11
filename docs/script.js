@@ -1,38 +1,4 @@
-/* ==============================
-   MOBILE NAVIGATION
-   ============================== */
-
-const menuToggle = document.getElementById("menu-toggle");
-const mainNav = document.getElementById("main-nav");
-
-if (menuToggle && mainNav) {
-
-    menuToggle.addEventListener("click", function () {
-
-        mainNav.classList.toggle("active");
-
-        if (mainNav.classList.contains("active")) {
-            menuToggle.textContent = "✕";
-        } else {
-            menuToggle.textContent = "☰";
-        }
-
-    });
-
-    const navLinks = mainNav.querySelectorAll("a");
-
-    navLinks.forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            mainNav.classList.remove("active");
-            menuToggle.textContent = "☰";
-
-        });
-
-    });
-
-}
+/* Mobile menu, sticky header and active link: see nav.js */
 
 
 /* ==============================
