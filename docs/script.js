@@ -406,14 +406,6 @@ function fieldValue(id) {
     return field ? field.value.trim() : "";
 }
 
-// The Formspree form expects a "cv" field. Files can't be sent on the free
-// plan, so a short note goes in its place.
-function cvNote() {
-    return fieldValue("application-type") === "Job Application"
-        ? "CV to be sent on WhatsApp"
-        : "Not applicable (enrolment enquiry)";
-}
-
 function buildWhatsAppMessage() {
 
     const type = fieldValue("application-type");
@@ -444,106 +436,40 @@ function buildWhatsAppMessage() {
     return lines.join("\n");
 }
 
+// Enquiries and job applications are sent on WhatsApp.
+// (To also receive them by email later, a form service such as Formspree
+//  can be added back: the old form ID was xqpzdaev.)
 if (contactForm && formSuccess) {
 
-    const submitButton = contactForm.querySelector(".submit-button");
     let whatsappText = "";
 
-    contactForm.addEventListener("submit", async function (event) {
+    function openWhatsApp() {
+        const url = "https://wa.me/" + WHATSAPP_NUMBER +
+            (whatsappText ? "?text=" + encodeURIComponent(whatsappText) : "");
+        window.open(url, "_blank", "noopener");
+    }
+
+    contactForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
         whatsappText = buildWhatsAppMessage();
         const isJob = fieldValue("application-type") === "Job Application";
 
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.textContent = "Sending...";
-        }
+        openWhatsApp();
 
-        let sent = false;
-        let reason = "";
-        let formspreeRefused = false;
-
-        try {
-            // Formspree's free plan does not accept file uploads, so the CV
-            // is left out here and applicants send it on WhatsApp instead.
-            const formData = new FormData(contactForm);
-            formData.delete("cv");
-            formData.append("cv", cvNote());
-
-            const response = await fetch(contactForm.action, {
-                method: "POST",
-                body: formData,
-                headers: { "Accept": "application/json" }
-            });
-            sent = response.ok;
-            if (!sent) {
-                formspreeRefused = true;
-                try {
-                    const data = await response.json();
-                    reason = (data.errors || []).map(function (e) { return e.message; }).join(" ") || data.error || "";
-                } catch (e) { /* no details */ }
-                reason = reason || ("error " + response.status);
-                console.warn("Formspree refused the enquiry:", response.status, reason);
-            }
-        } catch (error) {
-            sent = false;
-            reason = "no connection to the form service";
-            formspreeRefused = true; // try the classic page submit instead
-            console.warn("Could not reach Formspree:", error);
-        }
-
-        // If the background send failed or Formspree refused it (for example
-        // its spam check needs a normal page submit, or the phone's data saver
-        // blocked it), send the form the classic way so the enquiry still
-        // arrives. The CV field is switched off first.
-        if (formspreeRefused) {
-            const cvField = document.getElementById("cv");
-            if (cvField) cvField.disabled = true;
-            let cvText = contactForm.querySelector('input[type="hidden"][name="cv"]');
-            if (!cvText) {
-                cvText = document.createElement("input");
-                cvText.type = "hidden";
-                cvText.name = "cv";
-                contactForm.appendChild(cvText);
-            }
-            cvText.value = cvNote();
-            HTMLFormElement.prototype.submit.call(contactForm);
-            return;
-        }
-
-        if (sent) {
-            successTitle.textContent = isJob ? "Application Sent!" : "Enquiry Sent!";
-            successMessage.textContent = isJob
-                ? "Thank you for applying. We have received your details. Please tap the button below to send us your CV on WhatsApp."
-                : "Thank you for contacting Shenwin & Kids. We have received your enquiry and will be in touch soon. For a faster reply, continue on WhatsApp.";
-            contactForm.reset();
-            if (cvFileName) cvFileName.textContent = "No file selected";
-            document.getElementById("enrolment-fields").style.display = "none";
-            document.getElementById("job-fields").style.display = "none";
-        } else {
-            successTitle.textContent = "Please Send It on WhatsApp";
-            successMessage.textContent =
-                "We couldn't send your message online just now (" + reason + "). Tap the button below and your details will be ready to send to us on WhatsApp.";
-        }
+        successTitle.textContent = "Almost done!";
+        successMessage.textContent = isJob
+            ? "Your application is ready in WhatsApp. Attach your CV there and press Send. If WhatsApp didn't open, tap the button below."
+            : "Your message is ready in WhatsApp. Just press Send there. If WhatsApp didn't open, tap the button below.";
 
         formSuccess.classList.add("active");
         formSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
 
-        if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = "Send Enquiry";
-        }
-
     });
 
     if (whatsappContinue) {
-        whatsappContinue.addEventListener("click", function () {
-            const url = "https://wa.me/" + WHATSAPP_NUMBER +
-                (whatsappText ? "?text=" + encodeURIComponent(whatsappText) : "");
-            window.open(url, "_blank", "noopener");
-        });
+        whatsappContinue.addEventListener("click", openWhatsApp);
     }
 
 }
