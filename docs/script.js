@@ -406,6 +406,14 @@ function fieldValue(id) {
     return field ? field.value.trim() : "";
 }
 
+// The Formspree form expects a "cv" field. Files can't be sent on the free
+// plan, so a short note goes in its place.
+function cvNote() {
+    return fieldValue("application-type") === "Job Application"
+        ? "CV to be sent on WhatsApp"
+        : "Not applicable (enrolment enquiry)";
+}
+
 function buildWhatsAppMessage() {
 
     const type = fieldValue("application-type");
@@ -462,6 +470,7 @@ if (contactForm && formSuccess) {
             // is left out here and applicants send it on WhatsApp instead.
             const formData = new FormData(contactForm);
             formData.delete("cv");
+            formData.append("cv", cvNote());
 
             const response = await fetch(contactForm.action, {
                 method: "POST",
@@ -492,6 +501,14 @@ if (contactForm && formSuccess) {
         if (formspreeRefused) {
             const cvField = document.getElementById("cv");
             if (cvField) cvField.disabled = true;
+            let cvText = contactForm.querySelector('input[type="hidden"][name="cv"]');
+            if (!cvText) {
+                cvText = document.createElement("input");
+                cvText.type = "hidden";
+                cvText.name = "cv";
+                contactForm.appendChild(cvText);
+            }
+            cvText.value = cvNote();
             HTMLFormElement.prototype.submit.call(contactForm);
             return;
         }
