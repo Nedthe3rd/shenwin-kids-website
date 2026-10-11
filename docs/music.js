@@ -14,7 +14,7 @@
     const KEY = "shenwin-music-off";
     const song = new Audio("audio/graduation-song.mp3?v=2");
     song.loop = true;
-    song.preload = "auto";
+    song.preload = "none";   // don't download the song until it actually plays
     song.volume = 0.8;
 
     let userOff = false;
@@ -75,6 +75,13 @@
     song.addEventListener("pause", render);
 
     render();
-    tryStart();
+
+    // Wait until the page and its pictures have loaded before fetching the
+    // song, so the photos appear first on slow connections.
+    if (document.readyState === "complete") {
+        tryStart();
+    } else {
+        window.addEventListener("load", tryStart, { once: true });
+    }
 
 })();

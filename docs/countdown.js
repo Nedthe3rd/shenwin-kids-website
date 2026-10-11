@@ -101,12 +101,23 @@
     const counters = all(".js-grad-n");
     let current = 0;
 
+    // Photos load one step ahead of the slideshow instead of all at once.
+    function load(i) {
+        const img = slides[(i + slides.length) % slides.length];
+        if (img && img.dataset.src && !img.getAttribute("src")) {
+            img.src = img.dataset.src;
+        }
+    }
+
     function show(index) {
+        load(index + 1);
         slides[current].classList.remove("active");
         current = (index + slides.length) % slides.length;   // loops back to the first
         slides[current].classList.add("active");
         counters.forEach(function (el) { el.textContent = current + 1; });
     }
+
+    load(1);
 
     if (slides.length > 1) {
         setInterval(function () {

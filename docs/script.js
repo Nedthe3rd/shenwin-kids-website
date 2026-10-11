@@ -25,7 +25,7 @@ galleryImages.forEach(function (image, index) {
 
         currentImageIndex = index;
 
-        lightboxImage.src = image.src;
+        lightboxImage.src = (image.dataset.full || image.src);
         lightboxImage.alt = image.alt;
 
         lightbox.classList.add("active");
@@ -68,7 +68,7 @@ function showPreviousImage() {
     }
 
     lightboxImage.src =
-        galleryImages[currentImageIndex].src;
+        (galleryImages[currentImageIndex].dataset.full || galleryImages[currentImageIndex].src);
 
     lightboxImage.alt =
         galleryImages[currentImageIndex].alt;
@@ -94,7 +94,7 @@ function showNextImage() {
     }
 
     lightboxImage.src =
-        galleryImages[currentImageIndex].src;
+        (galleryImages[currentImageIndex].dataset.full || galleryImages[currentImageIndex].src);
 
     lightboxImage.alt =
         galleryImages[currentImageIndex].alt;
