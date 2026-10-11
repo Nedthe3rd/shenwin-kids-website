@@ -12,7 +12,7 @@
 (function () {
 
     const KEY = "shenwin-music-off";
-    const song = new Audio("audio/graduation-song.mp3");
+    const song = new Audio("audio/graduation-song.mp3?v=2");
     song.loop = true;
     song.preload = "auto";
     song.volume = 0.8;
