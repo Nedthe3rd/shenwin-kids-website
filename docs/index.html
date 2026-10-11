@@ -11,7 +11,7 @@
     <meta name="description" content="Shenwin & Kids ECD Centre in Banket, Zimbabwe: a safe, caring place where young children learn through play. Enrolling ECD A, ECD B and Grade 1.">
     <link rel="icon" type="image/png" href="img/favicon.png">
 
-    <link rel="stylesheet" href="style.css?v=8">
+    <link rel="stylesheet" href="style.css?v=9">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -22,22 +22,68 @@
 
 
 <!-- ==============================
-     TOP BAR: GRADUATION COUNTDOWN + TIME
+     FIRST GRADUATION BANNER
+     (countdown + graduates slideshow; see countdown.js)
 ============================== -->
 
-<div class="top-bar">
+<section class="grad-banner" id="graduation" aria-label="First graduation countdown">
 
-    <div class="grad-countdown-wrap" id="grad-countdown-wrap">
-        <span class="grad-label">🎓 Graduation · 28 Nov 2026</span>
-        <span class="grad-countdown" id="grad-countdown" aria-live="off"></span>
+    <div class="confetti" aria-hidden="true"><i style="left:41%;background:#ff595e;animation-delay:-3.2s;animation-duration:6.2s"></i><i style="left:68%;background:#ffca3a;animation-delay:-2.9s;animation-duration:6.3s"></i><i style="left:64%;background:#ff595e;animation-delay:-0.3s;animation-duration:8.2s"></i><i style="left:8%;background:#ff595e;animation-delay:-0.7s;animation-duration:8.1s"></i><i style="left:72%;background:#ffca3a;animation-delay:-7.6s;animation-duration:9.2s"></i><i style="left:74%;background:#ffca3a;animation-delay:-4.6s;animation-duration:8.0s"></i><i style="left:28%;background:#ffca3a;animation-delay:-4.5s;animation-duration:6.7s"></i><i style="left:53%;background:#ff595e;animation-delay:-4.3s;animation-duration:8.9s"></i><i style="left:71%;background:#fbbf24;animation-delay:-5.5s;animation-duration:6.5s"></i><i style="left:73%;background:#ffffff;animation-delay:-1.5s;animation-duration:6.5s"></i><i style="left:91%;background:#ffca3a;animation-delay:-4.5s;animation-duration:9.1s"></i><i style="left:63%;background:#ffffff;animation-delay:-4.3s;animation-duration:9.9s"></i><i style="left:59%;background:#ff4fa3;animation-delay:-7.4s;animation-duration:7.8s"></i><i style="left:31%;background:#fbbf24;animation-delay:-1.4s;animation-duration:9.9s"></i><i style="left:10%;background:#ff4fa3;animation-delay:-2.4s;animation-duration:8.5s"></i><i style="left:43%;background:#ffffff;animation-delay:-3.6s;animation-duration:9.0s"></i><i style="left:9%;background:#ffca3a;animation-delay:-4.1s;animation-duration:6.8s"></i><i style="left:43%;background:#ff595e;animation-delay:-7.5s;animation-duration:8.1s"></i><i style="left:85%;background:#ffca3a;animation-delay:-6.1s;animation-duration:8.9s"></i><i style="left:40%;background:#8ac926;animation-delay:-5.6s;animation-duration:9.0s"></i><i style="left:74%;background:#fbbf24;animation-delay:-3.6s;animation-duration:10.2s"></i><i style="left:34%;background:#1982c4;animation-delay:-5.6s;animation-duration:6.3s"></i><i style="left:93%;background:#ffffff;animation-delay:-2.5s;animation-duration:8.9s"></i><i style="left:87%;background:#fbbf24;animation-delay:-3.6s;animation-duration:9.6s"></i><i style="left:85%;background:#8ac926;animation-delay:-0.2s;animation-duration:8.3s"></i><i style="left:21%;background:#ff4fa3;animation-delay:-0.9s;animation-duration:6.3s"></i><i style="left:98%;background:#8ac926;animation-delay:-1.0s;animation-duration:7.2s"></i><i style="left:50%;background:#fbbf24;animation-delay:-4.0s;animation-duration:6.8s"></i><i style="left:51%;background:#ff4fa3;animation-delay:-2.2s;animation-duration:6.7s"></i><i style="left:55%;background:#fbbf24;animation-delay:-4.4s;animation-duration:9.5s"></i><i style="left:45%;background:#ffffff;animation-delay:-7.1s;animation-duration:10.8s"></i><i style="left:19%;background:#ffca3a;animation-delay:-1.4s;animation-duration:7.2s"></i><i style="left:29%;background:#ffca3a;animation-delay:-3.9s;animation-duration:8.9s"></i><i style="left:33%;background:#8ac926;animation-delay:-0.0s;animation-duration:8.1s"></i><i style="left:47%;background:#ff4fa3;animation-delay:-4.5s;animation-duration:10.8s"></i><i style="left:88%;background:#fbbf24;animation-delay:-4.1s;animation-duration:9.1s"></i></div>
+
+    <div class="grad-inner">
+
+        <div class="grad-text">
+
+            <span class="grad-kicker">🎉 A historic first for Shenwin &amp; Kids 🎉</span>
+
+            <h2 class="grad-title js-grad-title">Our First Ever Graduation!</h2>
+
+            <p class="grad-sub">🎓 Class of 2026 &nbsp;·&nbsp; Saturday, 28 November 2026</p>
+
+            <div class="grad-boxes js-grad-boxes" aria-live="off">
+                <div class="grad-box"><b data-cd="days">--</b><span>Days</span></div>
+                <div class="grad-box"><b data-cd="hours">--</b><span>Hours</span></div>
+                <div class="grad-box"><b data-cd="minutes">--</b><span>Minutes</span></div>
+                <div class="grad-box"><b data-cd="seconds">--</b><span>Seconds</span></div>
+            </div>
+
+            <p class="grad-dayof js-grad-dayof" hidden></p>
+
+            <p class="grad-clock">
+                <i class="fa-regular fa-clock"></i>
+                <span class="js-clock"></span>
+            </p>
+
+        </div>
+
+        <div class="grad-show">
+            <div class="grad-frame js-grad-slides">
+                <img src="img/graduates/graduate01.webp" alt="Shenwin &amp; Kids graduate" class="active" decoding="async">
+                <img src="img/graduates/graduate02.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate03.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate04.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate05.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate06.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate07.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate08.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate09.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate10.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate11.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate12.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate13.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate14.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate15.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate16.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate17.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate18.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+                <img src="img/graduates/graduate19.webp" alt="Shenwin &amp; Kids graduate" decoding="async">
+            </div>
+            <p class="grad-caption">Meet our graduates &nbsp;·&nbsp; <b class="js-grad-n">1</b> of 19</p>
+        </div>
+
     </div>
 
-    <div class="current-time">
-        <i class="fa-regular fa-clock"></i>
-        <span id="current-time"></span>
-    </div>
-
-</div>
+</section>
 
 <!-- ==============================
      HEADER
@@ -1586,7 +1632,7 @@
 
 <script src="script.js?v=7"></script>
 
-<script src="countdown.js?v=1"></script>
+<script src="countdown.js?v=2"></script>
 
 </body>
 
