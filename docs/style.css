@@ -4972,3 +4972,50 @@ section[id],
 #enquiry-form {
     scroll-margin-top: 150px;
 }
+
+
+/* ==============================
+   GRADUATION MUSIC BUTTON (music.js)
+============================== */
+
+.music-toggle {
+    position: fixed;
+    left: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 3px solid #1e3a8a;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1e3a8a;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1;
+    box-shadow: 3px 3px 0 #1e3a8a;
+    cursor: pointer;
+}
+
+.music-toggle.is-on {
+    background: #ffca3a;
+}
+
+.music-toggle.is-on i {
+    animation: music-pulse 1.2s ease-in-out infinite;
+}
+
+.music-toggle:focus-visible {
+    outline: 3px solid #ff595e;
+    outline-offset: 3px;
+}
+
+@keyframes music-pulse {
+    50% { transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .music-toggle.is-on i { animation: none; }
+}
