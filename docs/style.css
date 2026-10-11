@@ -4615,3 +4615,9 @@ section:not(.hero)::after {
     position: fixed;
     z-index: 2000;
 }
+
+/* CV box now points applicants to WhatsApp */
+.cv-upload-icon .fa-whatsapp {
+    color: #25d366;
+    font-size: 26px;
+}
