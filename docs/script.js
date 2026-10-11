@@ -454,6 +454,8 @@ if (contactForm && formSuccess) {
         }
 
         let sent = false;
+        let reason = "";
+        let formspreeRefused = false;
 
         try {
             // Formspree's free plan does not accept file uploads, so the CV
@@ -467,8 +469,29 @@ if (contactForm && formSuccess) {
                 headers: { "Accept": "application/json" }
             });
             sent = response.ok;
+            if (!sent) {
+                formspreeRefused = true;
+                try {
+                    const data = await response.json();
+                    reason = (data.errors || []).map(function (e) { return e.message; }).join(" ") || data.error || "";
+                } catch (e) { /* no details */ }
+                reason = reason || ("error " + response.status);
+                console.warn("Formspree refused the enquiry:", response.status, reason);
+            }
         } catch (error) {
             sent = false;
+            reason = "no connection to the form service";
+            console.warn("Could not reach Formspree:", error);
+        }
+
+        // If Formspree answered but refused (for example its spam check needs
+        // a normal page submit), send the form the classic way instead so the
+        // enquiry still arrives. The CV field is switched off first.
+        if (formspreeRefused) {
+            const cvField = document.getElementById("cv");
+            if (cvField) cvField.disabled = true;
+            HTMLFormElement.prototype.submit.call(contactForm);
+            return;
         }
 
         if (sent) {
@@ -483,7 +506,7 @@ if (contactForm && formSuccess) {
         } else {
             successTitle.textContent = "Please Send It on WhatsApp";
             successMessage.textContent =
-                "We couldn't send your message online just now. Tap the button below and your details will be ready to send to us on WhatsApp.";
+                "We couldn't send your message online just now (" + reason + "). Tap the button below and your details will be ready to send to us on WhatsApp.";
         }
 
         formSuccess.classList.add("active");
