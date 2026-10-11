@@ -4965,3 +4965,10 @@ section:not(.hero)::after {
         width: min(260px, 72vw);
     }
 }
+
+
+/* Menu links: stop section titles hiding under the sticky header */
+section[id],
+#enquiry-form {
+    scroll-margin-top: 150px;
+}
