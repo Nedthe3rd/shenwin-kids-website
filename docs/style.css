@@ -4973,3 +4973,490 @@ section[id],
     scroll-margin-top: 150px;
 }
 
+
+/* ==============================
+   GRADUATION MUSIC BUTTON (music.js)
+============================== */
+
+.music-toggle {
+    position: fixed;
+    left: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 3px solid #1e3a8a;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1e3a8a;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1;
+    box-shadow: 3px 3px 0 #1e3a8a;
+    cursor: pointer;
+}
+
+.music-toggle.is-on {
+    background: #ffca3a;
+}
+
+.music-toggle.is-on i {
+    animation: music-pulse 1.2s ease-in-out infinite;
+}
+
+.music-toggle:focus-visible {
+    outline: 3px solid #ff595e;
+    outline-offset: 3px;
+}
+
+@keyframes music-pulse {
+    50% { transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .music-toggle.is-on i { animation: none; }
+}
+
+
+/* =========================================================
+   HEADER & NAVIGATION (refreshed)
+   ========================================================= */
+
+body {
+    padding-top: 9px;                 /* room for the rainbow line */
+}
+
+.site-header {
+    top: 9px;
+    gap: 24px;
+
+    padding: 10px 48px;
+
+    background-color: rgba(255, 255, 255, 0.96);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #eef0f6;
+
+    transition: box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.site-header.scrolled {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    box-shadow: 0 6px 24px rgba(30, 58, 138, 0.10);
+}
+
+/* ---- brand ---- */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand img {
+    width: 66px;
+    height: 66px;
+    object-fit: contain;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.site-header.scrolled .brand img {
+    width: 54px;
+    height: 54px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.brand-text strong {
+    font-family: "Baloo 2", "Nunito", Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #1e3a8a;
+    letter-spacing: 0.2px;
+}
+
+.brand-text small {
+    margin-top: 2px;
+
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    color: #f59e0b;
+}
+
+/* ---- links ---- */
+
+.site-header nav {
+    gap: 2px;
+    flex-wrap: nowrap;
+}
+
+.site-header nav a {
+    position: relative;
+    white-space: nowrap;            /* never split "About Us" / "Enrol Now" */
+
+    padding: 9px 12px;
+    border-radius: 999px;
+
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #2b3555;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-header nav a:hover {
+    color: #1e3a8a;
+    background-color: #eef2ff;
+}
+
+.site-header nav a.active {
+    color: #1e3a8a;
+}
+
+.site-header nav a.active::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+
+    width: 18px;
+    height: 3px;
+    border-radius: 3px;
+
+    background-color: #f59e0b;
+    transform: translateX(-50%);
+}
+
+/* ---- Enrol Now button ---- */
+
+.site-header nav a.nav-cta {
+    margin-left: 8px;
+    padding: 11px 18px;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-header nav a.nav-cta:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(249, 115, 22, 0.45);
+}
+
+.site-header nav a.nav-cta i {
+    margin-right: 4px;
+}
+
+/* ---- animated menu button ---- */
+
+.site-header .menu-toggle {
+    width: 46px;
+    height: 46px;
+    padding: 12px 11px;
+
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-radius: 12px;
+    background-color: #eef2ff;
+}
+
+.site-header .menu-toggle span {
+    display: block;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #1e3a8a;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.site-header .menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.site-header .menu-toggle.open span:nth-child(2) { opacity: 0; }
+.site-header .menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ---- laptops: keep the full menu, just tighter ---- */
+
+@media (max-width: 1320px) and (min-width: 1001px) {
+
+    .site-header {
+        padding-left: 24px;
+        padding-right: 24px;
+        gap: 14px;
+    }
+
+    .brand img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .brand-text strong {
+        font-size: 22px;
+    }
+
+    .brand-text small {
+        font-size: 9px;
+        letter-spacing: 0.9px;
+    }
+
+    .site-header nav a {
+        padding: 8px 9px;
+        font-size: 14.5px;
+    }
+
+    .site-header nav a.nav-cta {
+        margin-left: 6px;
+        padding: 10px 14px;
+    }
+}
+
+/* small laptops: drop the tagline under the name */
+@media (max-width: 1150px) and (min-width: 1001px) {
+
+    .brand-text small {
+        display: none;
+    }
+
+    .site-header nav a {
+        padding: 8px 7px;
+        font-size: 14px;
+    }
+}
+
+/* ---- tablets and phones: menu button ---- */
+
+@media (max-width: 1000px) {
+
+    .site-header {
+        padding: 10px 24px;
+    }
+
+    .site-header .menu-toggle {
+        display: flex;
+    }
+
+    .site-header nav {
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        width: 100%;
+        padding: 12px 20px 20px;
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+
+        background-color: #ffffff;
+        border-top: 1px solid #eef0f6;
+        box-shadow: 0 16px 30px rgba(30, 58, 138, 0.12);
+    }
+
+    .site-header nav.active {
+        display: flex;
+    }
+
+    .site-header nav a {
+        width: auto;
+        padding: 13px 16px;
+        border-radius: 12px;
+
+        text-align: left;
+        font-size: 16px;
+    }
+
+    .site-header nav a.active {
+        background-color: #eef2ff;
+    }
+
+    .site-header nav a.active::after {
+        left: auto;
+        right: 16px;
+        bottom: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        transform: translateY(50%);
+    }
+
+    .site-header nav a.nav-cta {
+        margin: 10px 0 0;
+        padding: 14px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .site-header {
+        padding: 8px 14px;
+        gap: 10px;
+    }
+
+    .brand img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .brand-text strong {
+        font-size: 21px;
+    }
+
+    .brand-text small {
+        font-size: 9px;
+        letter-spacing: 0.8px;
+    }
+}
+
+/* the sticky header is shorter now */
+section[id],
+#enquiry-form {
+    scroll-margin-top: 110px;
+}
+
+
+/* =========================================================
+   FIND US: MAP + DIRECTIONS
+   ========================================================= */
+
+.find-us {
+    max-width: 1200px;
+    margin: 50px auto 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 30px;
+    align-items: center;
+
+    padding: 28px;
+    border-radius: 24px;
+    background-color: #ffffff;
+    box-shadow: 0 14px 40px rgba(30, 58, 138, 0.10);
+}
+
+.find-us-text h3 {
+    margin: 8px 0 12px;
+    font-size: 28px;
+    color: #1e3a8a;
+}
+
+.find-us-text p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #374151;
+}
+
+.find-us-text p i {
+    color: #f59e0b;
+    margin-right: 6px;
+}
+
+.find-us-hint {
+    color: #6b7280 !important;
+    font-size: 14px !important;
+}
+
+.directions-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 10px;
+    padding: 14px 24px;
+    border-radius: 999px;
+
+    font-weight: 800;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.directions-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.45);
+}
+
+.find-us-map {
+    position: relative;
+    display: block;
+
+    height: 340px;
+    border-radius: 18px;
+    overflow: hidden;
+
+    border: 4px solid #eef2ff;
+    background-color: #e8eef9;   /* shown while the map loads */
+    cursor: pointer;
+}
+
+.find-us-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    pointer-events: none;      /* a tap opens directions instead of moving the map */
+}
+
+.find-us-map-badge {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+
+    padding: 10px 16px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 800;
+    color: #1e3a8a;
+    background-color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.find-us-map:hover .find-us-map-badge {
+    background-color: #fde68a;
+}
+
+.contact-item p a,
+.footer-column p a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.contact-item p a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+    .find-us {
+        grid-template-columns: 1fr;
+        margin: 36px 16px 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .find-us-map {
+        height: 260px;
+    }
+}
