@@ -456,9 +456,14 @@ if (contactForm && formSuccess) {
         let sent = false;
 
         try {
+            // Formspree's free plan does not accept file uploads, so the CV
+            // is left out here and applicants send it on WhatsApp instead.
+            const formData = new FormData(contactForm);
+            formData.delete("cv");
+
             const response = await fetch(contactForm.action, {
                 method: "POST",
-                body: new FormData(contactForm),
+                body: formData,
                 headers: { "Accept": "application/json" }
             });
             sent = response.ok;
@@ -469,7 +474,7 @@ if (contactForm && formSuccess) {
         if (sent) {
             successTitle.textContent = isJob ? "Application Sent!" : "Enquiry Sent!";
             successMessage.textContent = isJob
-                ? "Thank you for applying. We have received your details and will be in touch. You can also send us your CV on WhatsApp."
+                ? "Thank you for applying. We have received your details. Please tap the button below to send us your CV on WhatsApp."
                 : "Thank you for contacting Shenwin & Kids. We have received your enquiry and will be in touch soon. For a faster reply, continue on WhatsApp.";
             contactForm.reset();
             if (cvFileName) cvFileName.textContent = "No file selected";
