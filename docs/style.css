@@ -5193,9 +5193,57 @@ body {
 .site-header .menu-toggle.open span:nth-child(2) { opacity: 0; }
 .site-header .menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-/* ---- collapse to menu button below 1320px ---- */
+/* ---- laptops: keep the full menu, just tighter ---- */
 
-@media (max-width: 1320px) {
+@media (max-width: 1320px) and (min-width: 1001px) {
+
+    .site-header {
+        padding-left: 24px;
+        padding-right: 24px;
+        gap: 14px;
+    }
+
+    .brand img {
+        width: 56px;
+        height: 56px;
+    }
+
+    .brand-text strong {
+        font-size: 22px;
+    }
+
+    .brand-text small {
+        font-size: 9px;
+        letter-spacing: 0.9px;
+    }
+
+    .site-header nav a {
+        padding: 8px 9px;
+        font-size: 14.5px;
+    }
+
+    .site-header nav a.nav-cta {
+        margin-left: 6px;
+        padding: 10px 14px;
+    }
+}
+
+/* small laptops: drop the tagline under the name */
+@media (max-width: 1150px) and (min-width: 1001px) {
+
+    .brand-text small {
+        display: none;
+    }
+
+    .site-header nav a {
+        padding: 8px 7px;
+        font-size: 14px;
+    }
+}
+
+/* ---- tablets and phones: menu button ---- */
+
+@media (max-width: 1000px) {
 
     .site-header {
         padding: 10px 24px;
