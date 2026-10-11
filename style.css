@@ -4595,3 +4595,23 @@ section:not(.hero)::after {
     object-fit: cover;
     display: block;
 }
+
+/* Illustrations on plain white backgrounds: show the whole picture */
+.activity-image img.illustration {
+    object-fit: contain;
+    background-color: #ffffff;
+    padding: 12px;
+}
+
+/* Footer links inside contact lines */
+.footer-column p a {
+    margin: 0;
+    color: inherit;
+}
+
+/* Keep the photo lightbox floating over the page
+   (the ".gallery > *" rule above was turning it into a big blank block) */
+.gallery > .lightbox {
+    position: fixed;
+    z-index: 2000;
+}
